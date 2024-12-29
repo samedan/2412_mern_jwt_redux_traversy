@@ -9,3 +9,12 @@
 ## Use modules instead of require
 
 > package.json -> "type": "module"
+
+### asyncHandler on any request
+
+> userController -> const authUser = asyncHandler()
+
+### ERRORS
+
+> /backend/middleware/errorMiddleware.js -> notFound, errorHandler
+> server.js -> app.use(notFound); app.use(errorHandler);
