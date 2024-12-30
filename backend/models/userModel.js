@@ -21,13 +21,13 @@ const userSchema = mongoose.Schema({
 
 // runs before 'save'
 userSchema.pre('save', async function (next) {
-    if(!this.isModified('password')){
+    if(!this.isModified('password')){ // if already hashed and saved
         next();   
     }
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-})
+});
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
 export default User;
