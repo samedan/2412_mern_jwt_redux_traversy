@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   let message = err.message;
 
-  // Mongoose error = CastError AND user with ObjectId that doesnt exist
+  // Mongoose error = CASTError AND user with ObjectId that doesnt exist
   if (err.name === "CastError" && err.kind === "ObjectId") {
     statusCode = 404;
     message = "Resource not found";

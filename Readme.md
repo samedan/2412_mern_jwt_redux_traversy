@@ -18,3 +18,9 @@
 
 > /backend/middleware/errorMiddleware.js -> notFound, errorHandler
 > server.js -> app.use(notFound); app.use(errorHandler);
+
+
+### User in DBB
+> create Model : /backend/models/userModel.js
+
+> import model in Controller: userController.js
