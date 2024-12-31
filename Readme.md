@@ -6,6 +6,8 @@
 
 > folder on h : E:\_apps_2025\2412_traversy_mern_linode
 
+### NodeJS, Vite, Redux Toolkit, React Bootstrap
+
 ## Use modules instead of require
 
 > package.json -> "type": "module"
@@ -48,3 +50,7 @@
 > router.route("/profile")
 > .get(protect, getUserProfile)
 > .put(protect, updateUserProfile);
+
+### FRONTEND
+
+> npm create vite@latest frontend
