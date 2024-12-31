@@ -19,8 +19,32 @@
 > /backend/middleware/errorMiddleware.js -> notFound, errorHandler
 > server.js -> app.use(notFound); app.use(errorHandler);
 
-
 ### User in DBB
+
 > create Model : /backend/models/userModel.js
 
 > import model in Controller: userController.js
+
+## Check for password on login
+
+# Add custom function
+
+> userModel.js -> userSchema.methods.matchPassword()
+
+> userController.js -> if (user && (await user.matchPassword(password))) {}
+
+### User Cookie to check Auth Status
+
+> server.js -> app.use(cookieParser());
+
+# Auth Middleware /middleware/authMiddleware.js
+
+> const protect = ...
+
+> remove password from response: User.findById(decoded.userId).select("-password");
+
+# Use Middleware in routes
+
+> router.route("/profile")
+> .get(protect, getUserProfile)
+> .put(protect, updateUserProfile);

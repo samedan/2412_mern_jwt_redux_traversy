@@ -6,6 +6,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../controllers/userController.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -16,6 +17,9 @@ router.post("/", registerUser);
 // LOGOUT /api/users/logout
 router.post("/logout", logoutUser);
 // GET & PUT /api/users/profile
-router.route("/profile").get(getUserProfile).put(updateUserProfile);
+router
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
 
 export default router;
