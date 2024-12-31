@@ -2,46 +2,56 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
-
 // @desc   Auth user/set token
 // @route  POST /api/users/auth
 //@ access Public
 const authUser = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Auth user" });
-  // error example
-  // res.status(401);
-  // throw new Error("Smth went wrong");
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  // use custom User method matchPassword to compare them
+  if (user && (await user.matchPassword(password))) {
+    generateToken(res, user._id);
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
 });
 
 // @desc   Register new user
 // @route  POST /api/users
 //@ access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const {name, email, password} = req.body;
-  // check for user 
-  const userExists = await User.findOne({email: email});
-  if(userExists) {
+  const { name, email, password } = req.body;
+  // check for user
+  const userExists = await User.findOne({ email: email });
+  if (userExists) {
     res.status(400);
-    throw new Error('User already exists');
+    throw new Error("User already exists");
   }
   // register
   const user = await User.create({
     name,
     email,
-    password
+    password,
   });
-  if(user) {
+  if (user) {
     generateToken(res, user._id);
-    
+
     res.status(201).json({
-      _id: user._id, 
+      _id: user._id,
       name: user.name,
-      email: user.email
+      email: user.email,
     });
   } else {
     res.status(400);
     throw new Error("Invalid user data");
-  }  
+  }
 });
 
 // @desc   Logout user
