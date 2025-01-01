@@ -78,3 +78,13 @@
 # app.js + Outlet: Renders the matching child route of a parent route or nothing if no child route matches
 
 > const App = () => {return (<Outlet />);}
+
+### REDUX Toolkit
+
+> npm i @reduxjs/toolkit react-redux
+
+## Store
+
+> store.js
+
+> main.js -> <Provider store={store}></Provider>
