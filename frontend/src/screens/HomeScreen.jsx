@@ -1,9 +1,11 @@
 import Hero from "./Hero";
 
-export const HomeScreen = () => {
+const HomeScreen = () => {
   return (
     <>
       <Hero />
     </>
   );
 };
+
+export default HomeScreen;
