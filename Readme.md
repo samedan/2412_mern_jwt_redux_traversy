@@ -94,3 +94,5 @@
 > src/slices/authSlice.js  -> export const { setCredentials, logout} = authSlice.actions
 
 > src/slices/authSlice.js  -> export default authSlice.reducer;
+
+> ![rexux](https://github.com/samedan/2412_mern_jwt_redux_traversy/blob/main/public/images/01_printscreen.jpg)
