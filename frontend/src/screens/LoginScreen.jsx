@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
@@ -6,6 +7,7 @@ import FormContainer from "../components/FormContainer";
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -59,7 +61,7 @@ export const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        { isLoading && <h2>Loading...</h2>}
+        { isLoading && <Loader />}
         <Button type="submit" varinat="primary" className="mt-3">
           Sign In
         </Button>

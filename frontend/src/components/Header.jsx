@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
