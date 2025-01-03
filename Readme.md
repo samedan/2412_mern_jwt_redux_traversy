@@ -12,6 +12,10 @@
 
 > folder on h : E:\_apps_2025\2412_traversy_mern_linode
 
+### PORTS
+# set port of api on FrontEnd 
+> /frontend/vite.config.js
+
 ### NodeJS, Vite, Redux Toolkit, React Bootstrap
 
 ## Use modules instead of require

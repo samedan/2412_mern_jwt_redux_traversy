@@ -1,16 +1,39 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
-
+import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from "../components/FormContainer";
+import { useLoginMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { toast } from "react-toastify";
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate= useNavigate();
+  const dispatch = useDispatch();
+
+  // set data in state from apiSlice
+  const [login, {isLoading, error}] = useLoginMutation();
+  // get data from state
+  const {userInfo } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if(userInfo){
+      navigate('/')
+    }
+  }, [navigate, userInfo])
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("sumbit");
+    try {
+      const res = await login({email, password}).unwrap(); // unwrap a promise
+      dispatch(setCredentials({...res})); // set user to localstorage and state
+      navigate('/')
+    } catch (err) {
+      console.log(err?.data?.message || err.error)       
+      toast.error(err?.data?.message || err.error)       
+    }
   };
 
   return (
@@ -35,6 +58,8 @@ export const LoginScreen = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
+
+        { isLoading && <h2>Loading...</h2>}
         <Button type="submit" varinat="primary" className="mt-3">
           Sign In
         </Button>
