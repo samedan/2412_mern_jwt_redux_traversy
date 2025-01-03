@@ -28,6 +28,8 @@ const authUser = asyncHandler(async (req, res) => {
 //@ access Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+  console.log(name, email, password);
+  
   // check for user
   const userExists = await User.findOne({ email: email });
   if (userExists) {

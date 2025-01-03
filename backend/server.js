@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
-  res.setDefaultEncoding("server is rady");
+  res.setDefaultEncoding("server is ready");
 });
 
 // Middleware

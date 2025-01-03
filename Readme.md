@@ -88,3 +88,9 @@
 > store.js
 
 > main.js -> <Provider store={store}></Provider>
+
+> src/slices/authSlice.js  -> const authSlice = createSlice()
+
+> src/slices/authSlice.js  -> export const { setCredentials, logout} = authSlice.actions
+
+> src/slices/authSlice.js  -> export default authSlice.reducer;
