@@ -108,3 +108,7 @@
 > /src/components/PrivateRoute.jsx -> return userInfo ? <Outlet /> : <Navigate to="/login" replace />;
 
 > main.jsx -> <Route path="" element=PrivateRoute><Route path="/profile" element=ProfileScreen /></Route>
+
+### DEPLOYMENT
+
+> server.js -> production(.env) -> create route '/frontend/dist/index.html' from any other route other than '/api/users'
