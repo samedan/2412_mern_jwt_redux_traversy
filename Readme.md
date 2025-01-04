@@ -13,7 +13,9 @@
 > folder on h : E:\_apps_2025\2412_traversy_mern_linode
 
 ### PORTS
-# set port of api on FrontEnd 
+
+# set port of api on FrontEnd
+
 > /frontend/vite.config.js
 
 ### NodeJS, Vite, Redux Toolkit, React Bootstrap
@@ -93,10 +95,16 @@
 
 > main.js -> <Provider store={store}></Provider>
 
-> src/slices/authSlice.js  -> const authSlice = createSlice()
+> src/slices/authSlice.js -> const authSlice = createSlice()
 
-> src/slices/authSlice.js  -> export const { setCredentials, logout} = authSlice.actions
+> src/slices/authSlice.js -> export const { setCredentials, logout} = authSlice.actions
 
-> src/slices/authSlice.js  -> export default authSlice.reducer;
+> src/slices/authSlice.js -> export default authSlice.reducer;
 
 > ![rexux](https://github.com/samedan/2412_mern_jwt_redux_traversy/blob/main/public/images/01_printscreen.jpg)
+
+### Private Route on FrontEnd
+
+> /src/components/PrivateRoute.jsx -> return userInfo ? <Outlet /> : <Navigate to="/login" replace />;
+
+> main.jsx -> <Route path="" element=PrivateRoute><Route path="/profile" element=ProfileScreen /></Route>
