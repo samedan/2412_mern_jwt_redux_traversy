@@ -77,3 +77,52 @@
 # test Db connection
 
 > @localhost/app/folder> npm start
+
+### PROXY
+
+# PM2 Process Manager
+
+> @localhost/app/folder> sudo npm i -g pm2
+
+> @localhost/app/folder> pm2 start backend/server.js
+
+> ![deploy](https://github.com/samedan/2412_mern_jwt_redux_traversy/blob/main/public/images/02_printscreen.jpg)
+
+### Firewall
+
+> sudo ufw enable
+
+# Allow Ports fo Http HttpS SSH
+
+> sudo ufw allow ssh, http, https
+
+### NGINX
+
+> sudo apt install nginx
+
+# Default website url on NGINX
+
+> sudo nano /etc/nginx/sites-available/default
+
+```
+location / {
+  proxy_pass http://localhost:5000;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection 'upgrade';
+  proxy_set_header Host $host;
+  proxy_cache_bypass $http_upgrade;
+}
+```
+
+> sudo service nginx restart
+
+# Veryfy NGINX congfi file
+
+> sudo nginx -t
+
+> pm2 list
+
+> sudo systemctl start nginx
+
+> sudo systemctl restart nginx

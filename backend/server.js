@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
     // set root directory
     const __dirname = path.resolve();
     // make frontend a static folder
-    app.use(express.static(path.join(__dirname, 'frontend/dist')));
+    app.use(express.static(path.join(__dirname, '/frontend/dist')));
     // any route that is not '/api/users' goes to '/frontend/dist/index.html'
     app.get('*', (req, res) =>
         res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
